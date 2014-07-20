@@ -2,16 +2,19 @@
  * Lndscape
  */
 
-define('lndscape',[], function(){
+function lndscape(size)
+{
+    this._size=size;
+    this._heightmap=null;
     
-    function smooth(hmap,fsize)
+    function smooth(fsize)
     {
         var count=0.0;
         var total=0.0;
 
-        for(var x=0,xl=hmap.length;x<xl;x++)
+        for(var x=0,xl=_heightmap.length;x<xl;x++)
         {
-            for(var y=0,yl=hmap[x].length;y<yl;y++)
+            for(var y=0,yl=_heightmap[x].length;y<yl;y++)
             {
                 count=0.0;
                 total=0.0;
@@ -26,16 +29,17 @@ define('lndscape',[], function(){
                         if(y0 < 0 || y0 > yl-1)
                         continue;
 
-                        total += hmap[x0][y0];
+                        total += _heightmap[x0][y0];
                         count++;
                     }
                 }
 
                 if(count !== 0 && total !== 0.0)
                 {
-                    hmap[x][y]=total/count;
+                    _heightmap[x][y]=total/count;
                 }
             }
         }
     }
-});
+
+}

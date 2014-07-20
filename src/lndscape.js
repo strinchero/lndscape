@@ -1,11 +1,10 @@
 /*
  * Lndscape
  */
-(function(window){ function f(){
+(function(){
+console.log('defining lndscape(1)');
 define("lndscape",[],function()
 {
-    console.log('defining lndscape');
-    
     this._size=size;
     this._heightmap=null;
     
@@ -43,4 +42,5 @@ define("lndscape",[],function()
             }
         }
     }
-})}});
+    });
+})();

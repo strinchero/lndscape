@@ -96,7 +96,7 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
 
             for(var s=0;s<smoothPass;s++)
             {
-                    this.smooth(smoothSize);
+                this.smooth(smoothSize);
             }
 
             // Normalize and dec

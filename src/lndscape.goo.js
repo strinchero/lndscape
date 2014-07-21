@@ -2,7 +2,7 @@
  * Lndscape
  */
 (function(){
-console.log('defining lndscape(1)');
+
 define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(TerrainSurface)
 {
     return function(goo,size){
@@ -19,13 +19,13 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
         
         function getSurface()
         {
-            if(this._surface == null)
+            if(this._surface === null)
             {
                 var terrain = new TerrainSurface(landscape.getHeightmap(),tSize,tHeight,tSize);
                 _surface = terrain.rebuild();
             }
             
-            return _surface;
+            return this._surface;
         }
         
         function generateMultiPassHeightMap(steps,smoothPass,smoothSize) {

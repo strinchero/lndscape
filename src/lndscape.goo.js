@@ -112,7 +112,6 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
                 }
             }
 
-
             this._heightmap = matrix;
         }        
     

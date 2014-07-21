@@ -5,10 +5,11 @@
 
 define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(TerrainSurface)
 {
-    return function(goo,size){
+    return function(goo,size,height){
     
         this._goo=goo;
         this._size=size;
+        this._height=height;
         this._heightmap=null;
         this._surface = null;
         
@@ -21,7 +22,7 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
         {
             if(this._surface === null)
             {
-                var terrain = new TerrainSurface(landscape.getHeightmap(),tSize,tHeight,tSize);
+                var terrain = new TerrainSurface(this._heightmap,this._size,this._height,this._size);
                 _surface = terrain.rebuild();
             }
             

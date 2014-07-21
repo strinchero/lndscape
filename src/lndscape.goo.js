@@ -41,7 +41,7 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
             for (var i = 0; i < this._size; i++) {
                     matrix.push([]);
                     for (var j = 0; j < this._size; j++) {
-                            var v = (goo.ValueNoise.evaluate2d(i,j,scale) * 3);
+                            var v = (this._goo.ValueNoise.evaluate2d(i,j,scale) * 3);
                             matrix[i].push(v);
                     }
             }

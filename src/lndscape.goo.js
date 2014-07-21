@@ -3,13 +3,30 @@
  */
 (function(){
 console.log('defining lndscape(1)');
-define("lndscape/goo",[],function()
+define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(TerrainSurface)
 {
     return function(goo,size){
     
         this._goo=goo;
         this._size=size;
         this._heightmap=null;
+        this._surface = null;
+        
+        function getHeightmap()
+        {
+            return this._heightmap;
+        }
+        
+        function getSurface()
+        {
+            if(this._surface == null)
+            {
+                var terrain = new TerrainSurface(landscape.getHeightmap(),tSize,tHeight,tSize);
+                _surface = terrain.rebuild();
+            }
+            
+            return _surface;
+        }
         
         function generateMultiPassHeightMap(steps,smoothPass,smoothSize) {
 
@@ -52,21 +69,23 @@ define("lndscape/goo",[],function()
             var maxVal = -1.0;
             var minVal = 1000000000000;
 
-            for (var i = 0; i < this._size; i++) {
-                    for (var j = 0; j < this._size; j++) {
-                            var v = goo.ValueNoise.evaluate2d(i,j,scale) / reduce;
-                            var nv = matrix[i][j]+v;
-                            matrix[i][j]=nv;
+            for (var i = 0; i < this._size; i++) 
+            {
+                for (var j = 0; j < this._size; j++) 
+                {
+                    var v = goo.ValueNoise.evaluate2d(i,j,scale) / reduce;
+                    var nv = matrix[i][j]+v;
+                    matrix[i][j]=nv;
 
-                            if(nv > maxVal)
-                            {
-                                    maxVal = nv;
-                            }
-                            else if(nv < minVal)
-                            {
-                                    minVal = nv;
-                            }
+                    if(nv > maxVal)
+                    {
+                        maxVal = nv;
                     }
+                    else if(nv < minVal)
+                    {
+                        minVal = nv;
+                    }
+                }
             }
 
             // Smoothing
@@ -80,14 +99,15 @@ define("lndscape/goo",[],function()
 
             var k = maxVal - minVal;
 
-            for (var i = 0; i < this._size; i++) {
-                    for (var j = 0; j < this._size; j++) {
-
+            for (var i = 0; i < this._size; i++)
+            {
+                for (var j = 0; j < this._size; j++) 
+                {
                     var nv = matrix[i][j];
                     nv = ((nv - minVal)/k) - 0.1; // 10% underwater
 
                     matrix[i][j] = nv;
-                    }
+                }
             }
 
 

@@ -92,6 +92,8 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
 
             // Smoothing
 
+            this._heightmap = matrix;
+
             for(var s=0;s<smoothPass;s++)
             {
                     this.smooth(smoothSize);
@@ -111,8 +113,6 @@ define("lndscape/goo",["goo/addons/terrainpack/TerrainSurface"],function(Terrain
                     matrix[i][j] = nv;
                 }
             }
-
-            this._heightmap = matrix;
         }        
     
         this.smooth = function(fsize)
